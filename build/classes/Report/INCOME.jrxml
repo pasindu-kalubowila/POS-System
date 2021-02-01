@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8854857-3ddc-45ae-a2a6-955b09df696a">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invoiceid" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="time" class="java.lang.String"/>
+	<parameter name="month" class="java.lang.String"/>
+	<parameter name="totincome" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM `invoice` WHERE MONTH(`date`) = $P{invoiceid} ORDER BY `date` ASC]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="time" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tot" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customer_id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="net_tot" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="84" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="36" uuid="88f110a5-339c-4f54-9b2c-9ef7c05ffd0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Colonna MT" size="32"/>
+				</textElement>
+				<text><![CDATA[U-STRA DIGITAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="36" width="555" height="24" uuid="caeb716d-edb2-4ccf-9b9d-07a5999b9b47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14"/>
+				</textElement>
+				<text><![CDATA[Kaluthara Road, Bandaragama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="555" height="24" uuid="cb1b57c9-f56a-4f79-8ea0-462f65c394bc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14"/>
+				</textElement>
+				<text><![CDATA[Tel : 0719121765]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="404" y="34" width="57" height="20" uuid="478e5a17-52f8-4181-95e8-84c414e896d2"/>
+				<textElement>
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="54" width="57" height="20" uuid="36ec8468-f507-4e4b-ada7-98e1858641b7"/>
+				<textElement>
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Time :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="461" y="34" width="94" height="20" uuid="7383085f-c36f-4076-aeaf-f58e245de77e"/>
+				<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="54" width="94" height="20" uuid="9b10cdf6-fe4c-4412-a109-9ee94573539a"/>
+				<textFieldExpression><![CDATA[$P{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="0" width="71" height="24" uuid="dfa36bc6-62d0-497d-9962-3c560f5e0c41"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{month}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="158" y="24" width="244" height="24" uuid="40a0f889-fb2c-4b77-8003-ae21931a278e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century" size="14"/>
+				</textElement>
+				<text><![CDATA[ Month INCOME Details]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="79" height="20" uuid="362b29a5-577c-4cdd-b0c3-b4b29e55de42"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Invoice ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="0" width="79" height="20" uuid="6b67db1b-66d3-4ce5-8f9a-1243b22e7699"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="0" width="79" height="20" uuid="21066d34-46f5-4d71-b328-e417e350821b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="0" width="79" height="20" uuid="bccb14ff-6584-48a4-8a84-6f0cc0d94203"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="0" width="55" height="20" uuid="2cb5a6cc-3b88-4d18-9123-24c5af1c6c31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="90" height="20" uuid="ca0adca4-fbb3-4088-a362-4b147b637fbe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Customer ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="0" width="92" height="20" uuid="164f56bf-5747-407b-b92b-765eaeb5236e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<text><![CDATA[Net Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="553" height="1" forecolor="#CCCCCC" uuid="d2f4c506-7111-412f-964b-edb1b34fcef1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="79" height="20" uuid="daa53d8e-27fe-4df4-b936-97c83731e10a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="79" y="0" width="79" height="20" uuid="d21a7044-1d92-4bf4-bb1c-37869413ad0e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="0" width="79" height="20" uuid="8e0da368-a3a7-40cc-ae4b-8447cc55e2f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="0" width="79" height="20" uuid="8b2b68da-69b7-4dc6-aa3d-8d7d932afd0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="316" y="0" width="55" height="20" uuid="f317f634-fa17-4d32-896e-bd3cb72e36ad"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="90" height="20" uuid="e22f9a12-fc79-42a1-8657-b2e6b49fac07"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customer_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="0" width="92" height="20" uuid="9073af5f-b370-458b-9ff3-2e27fa14d474"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rs."+$F{net_tot}+".00"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="3" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="341" y="2" width="112" height="20" uuid="116c9081-9d7a-4ad3-af36-367823fd2738"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Toatal INCOME]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="453" y="2" width="100" height="20" uuid="c3274c54-44c3-47c7-a951-9ea950704bce"/>
+				<textElement>
+					<font fontName="Century Gothic" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totincome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

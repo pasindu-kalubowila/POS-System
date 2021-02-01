@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoicesmall_subreport" language="groovy" pageWidth="252" pageHeight="79" columnWidth="252" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="83c4e8f8-e164-4f5d-b8a1-390e53eef19b">
+	<property name="ireport.zoom" value="2.8531167061100033"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invoice_no" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+product.productname,
+invoice_item.qty,
+FORMAT(product_stock.retail_price,2) AS price,
+FORMAT(invoice_item.discount,2) AS disc,
+FORMAT(invoice_item.`value`,2) AS `value`
+FROM invoice_item INNER JOIN product_stock ON invoice_item.idproduct_stock=product_stock.idproduct_stock
+INNER JOIN product ON product_stock.id_product=product.id_product
+WHERE invoice_item.id_invoice=$P{invoice_no}]]>
+	</queryString>
+	<field name="productname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="disc" class="java.lang.String"/>
+	<field name="value" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="20" uuid="33aca4e4-962a-4b89-86bc-12b031dcf2d8"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="0" width="40" height="20" uuid="1e594b4d-af4d-42a8-a294-f04d7dd7008d"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="0" width="45" height="20" uuid="be85f497-c6fc-4dc3-ae13-f53b17f4de05"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unit Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="126" y="0" width="43" height="20" uuid="94d5106c-04d3-46ce-85f4-a451aa6ba0da"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="0" width="36" height="20" uuid="936b360d-f34a-4044-929a-bde4cbd29755"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="230" height="20" uuid="7db69d96-acf1-4194-a553-9ef303c8578a"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="24" width="40" height="20" uuid="55a5cbdc-4716-4b55-9494-b733e2549698"/>
+				<textFieldExpression><![CDATA[$F{qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="24" width="50" height="20" uuid="9b8ce43c-4dfc-45ad-a8df-c16b7feb7707"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="24" width="36" height="20" uuid="ed1cda56-7580-4c7a-bdfa-9b7784e8564f"/>
+				<textFieldExpression><![CDATA[$F{disc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="24" width="38" height="20" uuid="f7fbd381-4eac-410f-9802-59537ae355dc"/>
+				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

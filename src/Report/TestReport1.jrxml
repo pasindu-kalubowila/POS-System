@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="252" pageHeight="842" columnWidth="212" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41c91dba-99c8-406f-82de-e15940b3628f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dateFrom" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dateTo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT CAST(invoice.`date` AS char) AS inv_date, CAST(invoice.`time` AS char) AS inv_time, invoice.id_invoice, CONCAT(customer.fname," ",customer.lname) AS customername, invoice.payment_type,
+FORMAT(invoice.subtotal,2) AS subtotal, FORMAT(invoice.discount,2) AS discount, FORMAT(invoice.net_total,2) AS nettotal
+FROM invoice INNER JOIN customer ON invoice.id_customer=customer.id_customer WHERE invoice.`date` BETWEEN $P{dateFrom} AND $P{dateTo}]]>
+	</queryString>
+	<field name="inv_date" class="java.lang.String"/>
+	<field name="inv_time" class="java.lang.String"/>
+	<field name="id_invoice" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="customername" class="java.lang.String"/>
+	<field name="payment_type" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nettotal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="135" y="0" width="77" height="37" uuid="c24e7751-824e-47a8-907b-07f324e61e8b"/>
+				<textElement>
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[U Star]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="37" width="77" height="20" uuid="4d27bec8-d61a-4e8e-90be-10f8314f2900"/>
+				<text><![CDATA[077 - *******]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="59" width="77" height="20" uuid="a64997ca-ac64-4375-92e2-110550875999"/>
+				<text><![CDATA[abc@gmail.com]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="28" width="25" height="20" uuid="88efa7ca-6fc1-4559-b4b4-9af60ca7cfd6"/>
+				<text><![CDATA[to]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="0" width="68" height="20" uuid="2179ed71-cd0e-4647-a934-c86875abd39c"/>
+				<textFieldExpression><![CDATA[$P{dateFrom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="28" width="68" height="20" uuid="1b107f19-dde7-44fc-95d6-4e7d1b52d3b6"/>
+				<textFieldExpression><![CDATA[$P{dateTo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="0" width="25" height="20" uuid="ceaaa7da-73fd-4d35-b319-5d808d2c0dc4"/>
+				<text><![CDATA[from]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="41" width="69" height="20" uuid="b4fc7feb-0d76-4369-ad8b-bd9c5b262434"/>
+				<text><![CDATA[Invoice no]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="41" width="59" height="20" uuid="e392f4b7-7f78-4cf9-80a1-3fe43dbecd8f"/>
+				<text><![CDATA[subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="41" width="62" height="20" uuid="653c4f4e-ea75-474e-8e80-695970222001"/>
+				<text><![CDATA[discount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="11" width="69" height="20" uuid="3b9de85b-6a03-4e18-ac2b-a266aca6dc71"/>
+				<textFieldExpression><![CDATA[$F{id_invoice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="11" width="59" height="20" uuid="3cada677-fe80-4cb6-9503-b994ac1f2a83"/>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="11" width="62" height="20" uuid="cc287d54-2fd3-4015-8fc1-4949fbd985a3"/>
+				<textFieldExpression><![CDATA[$F{discount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

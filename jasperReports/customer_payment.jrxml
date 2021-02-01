@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice_small" language="groovy" pageWidth="212" pageHeight="802" columnWidth="212" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isIgnorePagination="true" uuid="59017ed1-d7a7-4ef3-9c54-d46ba635a664">
+	<property name="ireport.zoom" value="4.5949729863572815"/>
+	<property name="ireport.x" value="39"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="cpid" class="java.lang.String"/>
+	<parameter name="available pay" class="java.lang.String"/>
+	<parameter name="balance" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT CONCAT(c.fname,' ',c.lname) as name,
+cp.date,
+cp.time,
+FORMAT(cp.total_pay,2) AS total_pay,
+FORMAT(cp.cash_pay,2) AS cash_pay,
+FORMAT(cp.card_pay,2) AS card_pay
+from customer_payment cp
+INNER JOIN customer c on cp.customer_id=c.id_customer
+where cp.idcustomer_payment=$P{cpid}]]>
+	</queryString>
+	<field name="name" class="java.lang.String"/>
+	<field name="date" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="time" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total_pay" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cash_pay" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="card_pay" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="28" y="-1" width="156" height="31" uuid="17031969-dff8-4800-a178-010d81596244"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[The Fitness Gym]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="28" y="30" width="156" height="21" uuid="6b78ff06-b900-4f9c-bd13-ef3714373f67"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[The Fitness Gym. Mirigama Cargills FoodCity building 2nd floor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="73" width="206" height="1" uuid="d0e08e60-e74c-46a7-a9ec-ec3f18ecbba0"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="51" width="212" height="22" uuid="2f133d6f-df97-49cd-9df4-84e3ed84745e"/>
+				<textElement textAlignment="Center">
+					<font size="16" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Credit Payments]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="21" height="15" uuid="af073385-5de4-4dba-b6a9-0a88b0111c1d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Date: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="21" height="15" uuid="22024c84-796e-44ae-8ce5-c4d9eff15561"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Time: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="0" width="40" height="15" uuid="4e0f106f-ca5a-4865-b763-553a2599c1dd"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Customer:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="29" width="212" height="1" uuid="a2ccddf0-96a5-4542-9546-d4cac9d07f92"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="126" y="-2" width="83" height="15" uuid="52573908-a779-4d19-9e06-25d6ac448b6e"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="0" width="65" height="15" uuid="568ab74b-948d-4f55-b73d-2fa7da00e59a"/>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="15" width="65" height="14" uuid="d1f1845c-6f9b-41f3-beda-236af87955a6"/>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="115" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="116" height="20" uuid="09f654cb-4f81-4466-b14d-b5631f0e6a2b"/>
+				<text><![CDATA[Total Payment Available]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="100" height="20" uuid="4ff4c81d-be3a-48e0-9a6e-06f2ff7c0940"/>
+				<text><![CDATA[Total Payment Done]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="52" height="20" uuid="19e5b72b-c3f0-4bda-8b3c-92ad4412b403"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pay by]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="40" width="64" height="20" uuid="42709052-eb24-4773-9129-c030f26f8146"/>
+				<text><![CDATA[Cash]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="60" width="64" height="20" uuid="9f8bbc97-ee4a-46de-8bf2-730e876fad09"/>
+				<text><![CDATA[Card]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="86" width="63" height="20" uuid="fd22decb-b1a2-41fb-a55a-3a4ffcc3d4ea"/>
+				<text><![CDATA[Available Due]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="86" width="69" height="20" forecolor="#FF0033" uuid="3d84ccf4-9b1e-4002-bf34-3094a06fe900"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{balance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="0" width="69" height="20" uuid="d68ddd44-1965-4634-bf71-5b1e57a1680a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{available pay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="20" width="69" height="20" uuid="fc6c90b7-a1bb-452e-953f-7df6a9d81736"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{total_pay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="40" width="69" height="20" uuid="e77fb992-855a-4604-8182-3ff30fe07979"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cash_pay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="60" width="69" height="20" uuid="4e23a22e-fb20-4bf6-9da5-5471bc3c9e01"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{card_pay}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="128" y="85" width="70" height="1" uuid="8ff67ea6-f6a5-4726-a669-f03e1f7437e4"/>
+			</line>
+			<line>
+				<reportElement x="128" y="106" width="70" height="1" uuid="e119b13f-5025-4df3-9102-4d16d3947f6b"/>
+			</line>
+			<line>
+				<reportElement x="128" y="109" width="70" height="1" uuid="0a9ace24-2dfe-4f3f-a0cf-0e54f0c16bb7"/>
+			</line>
+			<line>
+				<reportElement x="3" y="112" width="206" height="1" uuid="de5f7a17-46e9-4758-b549-c6d9fb5f5d6b"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch">
+			<line>
+				<reportElement x="-558" y="-372" width="140" height="1" uuid="2428afb8-82df-4b08-bcd8-caf82b7d6c01"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="22" width="206" height="12" uuid="54b0484e-49dc-4a69-94aa-7913e5ac42f4"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[***Designed by Tech Nest Software Solutions***]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="1" width="206" height="20" uuid="8b2d2a19-261b-4ecf-ac8d-dff13df918ca"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[THANK YOU...! COME AGAIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="34" width="206" height="10" uuid="54c5c13a-6b08-4b2c-a16d-9dab88160776"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[076-3904635]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
